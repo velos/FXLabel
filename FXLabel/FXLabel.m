@@ -442,7 +442,7 @@
     {
         //use standard implementation
         return [self drawAtPoint:point
-                        forWidth:width
+                        forWidth:width*1.1
                         withFont:font
                      minFontSize:minFontSize
                   actualFontSize:actualFontSize
