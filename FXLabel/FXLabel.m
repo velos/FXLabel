@@ -39,6 +39,7 @@
 #error This class requires automatic reference counting
 #endif
 
+static CGFloat defaultOversamplingScale = 1.0;
 
 @implementation NSString (FXLabelDrawing)
 
@@ -572,6 +573,16 @@
 
 @synthesize shadowBlur; //no leading _ to avoid conflict with private property
 
++ (CGFloat) defaultOversamplingScale
+{
+    return defaultOversamplingScale;
+}
+
++ (void) setDefaultOversamplingScale:(CGFloat)setDefaultOversamplingScale
+{
+    defaultOversamplingScale = MAX(1.0, setDefaultOversamplingScale);
+}
+
 - (void)setUp
 {
     _gradientStartPoint = CGPointMake(0.5f, 0.0f);
@@ -582,7 +593,8 @@
         _minSamples = [UIScreen mainScreen].scale;
         _maxSamples = 32;
     }
-    _oversampling = _minSamples;
+    _oversampling = MIN(_minSamples * defaultOversamplingScale, _maxSamples);
+    
     _allowOrphans = YES;
 }
 

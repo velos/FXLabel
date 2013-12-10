@@ -93,5 +93,7 @@
 @property (nonatomic) BOOL allowOrphans;
 
 - (void)setUp;
++ (CGFloat) defaultOversamplingScale;
++ (void) setDefaultOversamplingScale:(CGFloat)setDefaultOversamplingScale;
 
 @end
